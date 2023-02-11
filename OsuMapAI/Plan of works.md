@@ -4,5 +4,4 @@
 - Project is shared in GitHub
 - Project gives every day imporvment in AI field, English, project managment
 - Language first choose of project should by Python
-- Hepfull tool for documentation Grammarly, ChatGPT, Obsidian, Yes
-- 
+- Hepfull tool for documentation Grammarly, ChatGPT, Obsidian,
