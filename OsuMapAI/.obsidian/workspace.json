@@ -11,8 +11,12 @@
             "id": "a1b7b7538f89ec49",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Plan of works.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Plan of works.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Plan of works.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Plan of works.md"
+              }
             }
           }
         ]
@@ -141,9 +149,10 @@
   "active": "a1b7b7538f89ec49",
   "lastOpenFiles": [
     "PyTorch for Deep Learning & Machine Learning – Notes.md",
-    "Action plan.md",
-    "Links.md",
     "Plan of works.md",
+    "Links.md",
+    "pytorch.org.md",
+    "Action plan.md",
     "Input-output data model investigation.md"
   ]
 }

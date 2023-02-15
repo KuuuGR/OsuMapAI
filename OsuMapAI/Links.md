@@ -7,4 +7,6 @@
 		- Notes from course: [[PyTorch for Deep Learning & Machine Learning – Notes|Notes]]
 	- [# PyTorch for Deep Learning - Full Course / Tutorial](https://www.youtube.com/watch?v=GIsg-ZUy0MY)
 		- comment: this course has two years already, so maybe is better to watch it later. Time: about 10hours total
-3. ...
+	- [PyTorch](https://pytorch.org/)
+3. Framework for AI in Python: - [PyTorch](https://pytorch.org/)
+4. 
