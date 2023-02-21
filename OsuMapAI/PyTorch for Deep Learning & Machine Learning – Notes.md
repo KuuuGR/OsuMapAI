@@ -54,6 +54,17 @@
 		2. Scalar, Vector, Matrix, Tensor -> we make it by adding more square brackets
 		3. usefull functions/commands -> TENSOR.ndim, TENSOR.shape, TENSOR[0], 
 		4.  [ends](https://youtu.be/V_xro1bcAuA?t=5734) at 1:35:34 speed 1.7x is slow down, becouse of practice mode. Is better to practice with lecturer. Is very important do do the code by yourself. 
+	6. Tensors continue <eng.to.correct>
+		1. Naming: scalar, vector -> lowercased, matrix, tensor -> uppercased
+		2. Random tensors. 
+			- Neural networks learn starts with tensor full of random numbers and then adjust those those to better represent the dat. Start with random numbers -> look at data -> update random numbers -> look at data -> update random numbers
+			- colab have smart competion, but is good to go to documentation  [TORCH.RAND](https://pytorch.org/docs/stable/generated/torch.rand.html). Example: torch.rand(4), torch.rand(2, 3)
+			- Create a random tensor with similar shape to an image tensor: 
+				- random_image_size_tensor = torch.rand(size =(224, 224, 3)) //height, width, colour channels (R, G, B)
+				- random_image_size_tensor.shape, random_image_size_tensor.ndim
+			-  [ends](https://youtu.be/V_xro1bcAuA?t=6334) at 1:45:34 speed 1.7x is slow down, becouse of practice mode. Is better to understand
+		
+	7. 
 	
 ____
 TODO: note: Correct this notes as a practicie for learn english
