@@ -63,8 +63,25 @@
 				- random_image_size_tensor = torch.rand(size =(224, 224, 3)) //height, width, colour channels (R, G, B)
 				- random_image_size_tensor.shape, random_image_size_tensor.ndim
 			-  [ends](https://youtu.be/V_xro1bcAuA?t=6334) at 1:45:34 speed 1.7x is slow down, becouse of practice mode. Is better to understand
-		
-	7. 
-	
+	7.  Continue with tensors:
+		1. Create tensors with all zeros
+			1. zeros = torch.zeros(size=(3,4))
+			2. zeros
+		2. Create tensors with all ones
+			1. ones = torch.ones(size=(3,4))
+			2. ones
+		3. Somthing about data type
+			1. ones.dtype
+			2. zreos.dtype
+			3. torch.float.32
+		4. Creating a range of tensors and tentors-like
+			1. torch.range(0, 10) //still working but is deprecated and will be removed
+			2. torch.arange(1, 10)
+		5. To look at the documentation press shift + tab
+			1. Documentation of [pytorch.arange](https://pytorch.org/docs/stable/generated/torch.arange.html)
+			2. ten_zeros = torch.zeros_like(input=one_to_ten) //its like method create tesor with same shape
+			3. //sometimes it works so slow or even hand it need to choose restart and runtime all form upper menu
+		4.  [ends](https://youtu.be/V_xro1bcAuA?t=6838) at 1:53:58 speed 1.7x is slow down, becouse of practice mode. Is better to understand
 ____
-TODO: note: Correct this notes as a practicie for learn english
+
+TODO: note: Correct this notes as a practicie for learn english from <eng.to.correct>
