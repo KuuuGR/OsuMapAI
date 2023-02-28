@@ -82,6 +82,22 @@
 			2. ten_zeros = torch.zeros_like(input=one_to_ten) //its like method create tesor with same shape
 			3. //sometimes it works so slow or even hand it need to choose restart and runtime all form upper menu
 		4.  [ends](https://youtu.be/V_xro1bcAuA?t=6838) at 1:53:58 speed 1.7x is slow down, becouse of practice mode. Is better to understand
+		6. Work with DataTypes precision in computing, 
+			1. dtype, device, requires_grad
+		7. Tensor operations [MatrixMultiplication cool animation](http://matrixmultiplication.xyz/)
+			1. matrix multiplication matmul(...), also can use @, or alias mm(...)
+			2. transpose tensor tensor_B.T.shape
+			3. tensor aggregatin (find the min, max, mean, sum), 
+				1. x.argmin() find the position where minimum value is
+				2. x.argmax()
+			4. Reshaping, stacking, squeezing, and unsqueezing tensors
+				1. Reshaping - reshapes an input tensor to a defined shape
+				2. View - Return a view of an input tensor of certain shape but keep the same memory as the oryginal tensor
+				3. Stacking - combine multiple tensors on top of each other (vstack) or side by side (hstack)
+				4. Squeeze - removes all '1' dimensions from a tensor
+				5. Unsqueeze - add a '1' dimension to a target tensor
+				6. Permute - Return a view of the input with dimensions permuted (swapped) in a certain way
+				7.  - [ends](https://youtu.be/V_xro1bcAuA?t=11496) at 3:11:36 speed 2.2x is ok, because is all repetition from math course
 ____
 
 TODO: note: Correct this notes as a practicie for learn english from <eng.to.correct>

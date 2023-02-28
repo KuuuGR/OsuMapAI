@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5db99f6dc6138fb0",
+        "id": "e75fb849fb1c5236",
         "type": "tabs",
         "children": [
           {
-            "id": "a1b7b7538f89ec49",
+            "id": "c3060cb5587505f0",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -146,14 +146,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a1b7b7538f89ec49",
+  "active": "c3060cb5587505f0",
   "lastOpenFiles": [
+    "PyTorch for Deep Learning & Machine Learning – Notes.md",
     "Plan of works.md",
     "Links.md",
     "Analize ideas.md",
     "Input-output data model investigation.md",
     "Action plan.md",
-    "PyTorch for Deep Learning & Machine Learning – Notes.md",
     "().md",
     "www.pytorch.org.md",
     "pytorch.org.md"
