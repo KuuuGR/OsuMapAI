@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PyTorch for Deep Learning & Machine Learning – Notes.md",
+                "file": "Action plan.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "PyTorch for Deep Learning & Machine Learning – Notes.md",
+                "file": "Action plan.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "PyTorch for Deep Learning & Machine Learning – Notes.md",
+                "file": "Action plan.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PyTorch for Deep Learning & Machine Learning – Notes.md"
+                "file": "Action plan.md"
               }
             }
           }
@@ -148,9 +148,9 @@
   },
   "active": "c3060cb5587505f0",
   "lastOpenFiles": [
+    "Links.md",
     "PyTorch for Deep Learning & Machine Learning – Notes.md",
     "Plan of works.md",
-    "Links.md",
     "Analize ideas.md",
     "Input-output data model investigation.md",
     "Action plan.md",

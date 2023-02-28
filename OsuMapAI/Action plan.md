@@ -33,3 +33,8 @@ Here are some reasons why these frameworks might be a good choice for your proje
 4.  Scalability: Both frameworks are designed to scale to large datasets and can handle the amount of data you have.
 
 Ultimately, the choice between TensorFlow and PyTorch will depend on your personal preference and experience, as both frameworks are capable of handling your use case. I recommend trying out a few tutorials in both frameworks to see which one you feel more comfortable with before making a decision.
+
+- Get fame beign great OSU! mapper, to makes model more recognizable. [
+ Mapper's Choice Awards and A Year In Mapping 2020 - Osu!](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiErOKKoLf9AhWk7rsIHeacDmQQFnoECD8QAQ&url=https%3A%2F%2Fosu.ppy.sh%2Fhome%2Fnews%2F2021-07-18-mca-ayim-2020&usg=AOvVaw2ojB9XYzpgVOgwK0AhPfpS)
+ - If there is no place for regular map generator maby there is for insane map?
+ - 

@@ -9,4 +9,6 @@
 		- comment: this course has two years already, so maybe is better to watch it later. Time: about 10hours total
 	- [PyTorch](https://pytorch.org/)
 3. Framework for AI in Python: - [PyTorch](https://pytorch.org/)
-4. 
+4. Somebody get the same idea and realized it. Maby worth co compare [https://github.com/kotritrona/osumapper](https://github.com/kotritrona/osumapper) 
+5. The Youtube about  [Using OpenAI to generate osu! maps](https://www.youtube.com/watch?v=9c8V368CbLU) . //TODO: read comments and check if something usefull is there
+6. 
