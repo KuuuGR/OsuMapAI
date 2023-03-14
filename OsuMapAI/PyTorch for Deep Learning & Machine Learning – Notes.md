@@ -98,6 +98,14 @@
 				5. Unsqueeze - add a '1' dimension to a target tensor
 				6. Permute - Return a view of the input with dimensions permuted (swapped) in a certain way
 				7.  - [ends](https://youtu.be/V_xro1bcAuA?t=11496) at 3:11:36 speed 2.2x is ok, because is all repetition from math course
+			8. More math. Maby worth to come back. All about tensors acces and tenstor modyfication. PyCharm and PyTorch stuff. Next topic is a Reproducbility - somthing about ronadom stuff
+				1. Reduce randomness. Use seed does is 'flavour'. 
+					RANDOM_SEED = 42
+					 torch_manual_seed(RANDOM_SEED)
+				2. Runing tensors and PyTorch objects on the GPUs (and making things faster stuff)
+				3. Check for GPU access with PyTorch. Set device if GPU access for CPU when is no GPU device. Assign and unassign GPU to CPU and CPU to GPU
+				4. end 32.PyTorch Fundamentals exercises & extra-curriculum
+				   [ends](https://youtu.be/V_xro1bcAuA?t=15159) at 4:12:39 speed 2.2x is ok, no practice just watch and see what's going on
 ____
 
 TODO: note: Correct this notes as a practicie for learn english from <eng.to.correct>
