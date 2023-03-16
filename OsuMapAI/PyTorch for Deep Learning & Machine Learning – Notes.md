@@ -106,6 +106,12 @@
 				3. Check for GPU access with PyTorch. Set device if GPU access for CPU when is no GPU device. Assign and unassign GPU to CPU and CPU to GPU
 				4. end 32.PyTorch Fundamentals exercises & extra-curriculum
 				   [ends](https://youtu.be/V_xro1bcAuA?t=15159) at 4:12:39 speed 2.2x is ok, no practice just watch and see what's going on
+				5. [practice before move on](https://youtu.be/V_xro1bcAuA?t=15246) worth to do practice for tensors, documentation and everything so far in this course.
+				6. Reading documentation on mac Shift + CMD + SPACE to read the docstring
+			9. CODE PART: [CODE PART](https://youtu.be/V_xro1bcAuA?t=15612)
+				1. Makes plot for visualization data, prepare data for linear function. 
+				2.   [ends](https://youtu.be/V_xro1bcAuA?t=18450) at 4:12:39 speed 2.2x is ok, no practice just watch and see what's going on
+				3. ..
 ____
 
 TODO: note: Correct this notes as a practicie for learn english from <eng.to.correct>
