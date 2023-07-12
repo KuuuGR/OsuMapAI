@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "e75fb849fb1c5236",
+        "id": "b6c22ce5c219b92e",
         "type": "tabs",
         "children": [
           {
-            "id": "c3060cb5587505f0",
+            "id": "73f015d334c7437e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Links.md",
+                "file": "Learning Zone/Obsidian tutorial.md",
                 "mode": "source",
                 "source": false
               }
@@ -64,6 +64,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "fa0485061ecd1d20",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -85,11 +93,11 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Links.md",
+                "file": "Learning Zone/Obsidian tutorial.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
@@ -102,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Links.md",
+                "file": "Learning Zone/Obsidian tutorial.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,11 +133,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Links.md"
+                "file": "Learning Zone/Obsidian tutorial.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -146,15 +155,30 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c3060cb5587505f0",
+  "active": "73f015d334c7437e",
   "lastOpenFiles": [
+    "ProjectStuff/Links.md",
+    "Learning Zone/Obsidian tutorial.md",
+    "Learning Zone/Deep Learning theory.md",
+    "Learning Zone/ChatGPT useful.md",
+    "ProjectStuff/Task to explore.md",
+    "Pasted image 20230627182142.png",
+    "ProjectStuff/Action plan.md",
+    "Begining/Obsidian on YouTube.md",
+    "ProjectStuff/Analize ideas.md",
+    "Pasted image 20230627182705.png",
+    "Pasted image 20230627182627.png",
     "Untitled.md",
-    "PyTorch for Deep Learning & Machine Learning – Notes.md",
-    "Links.md",
-    "Plan of works.md",
-    "Input-output data model investigation.md",
-    "Action plan.md",
-    "Analize ideas.md",
+    "ProjectStuff/Input-output data model investigation.md",
+    "Good Practice",
+    "Begining",
+    "ProjectStuff/PyTorch for Deep Learning & Machine Learning – Notes.md",
+    "Learning Zone",
+    "Music/Music for coding.md",
+    "Music/FutureMap music.md",
+    "ProjectStuff/Plan of works.md",
+    "ProjectStuff",
+    "Music",
     "().md",
     "www.pytorch.org.md",
     "pytorch.org.md"
