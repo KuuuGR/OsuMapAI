@@ -94,3 +94,16 @@ Warto do tego zrobić tutorial
 8. Readwise Official. It plugin for move things from readwise.io to Obsidian
 9. Obsidian Sync - also can by use by iCloud or DropBox, this is not free option
 10. Templater - community plugin like a Template plugin on steroids. It allows you to run JS scripts on your Votes
+
+
+#### [Building a USEFUL Habit Tracker in Obsidian](https://www.youtube.com/watch?v=W_leEJHBZW4)
+Good tutorial to install and use #HabitTracker community plugin. Examples, configuration and a lot of customisation examples.  
+#FromSergio
+
+#### [Actually getting things done with Obsidian // Checklist plugin](https://www.youtube.com/watch?v=ODhHTngIMJE)
+How make ToDo list in Obsidian. Good for working with productivity. Example how make and categorize todos. How to use in context, how to make task like view. Maybey is good idea go just get her system because she works on it more time and she evaluate it a lot. 
+#NicoleVanDerHoeven
+
+tommorow to do (how ironic XD)
+# Notion-like content calendar in Obsidian // Obsidian Projects plugin
+https://www.youtube.com/watch?v=ny8lksaQ5A8
