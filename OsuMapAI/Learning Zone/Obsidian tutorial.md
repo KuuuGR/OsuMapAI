@@ -104,6 +104,11 @@ Good tutorial to install and use #HabitTracker community plugin. Examples, confi
 How make ToDo list in Obsidian. Good for working with productivity. Example how make and categorize todos. How to use in context, how to make task like view. Maybey is good idea go just get her system because she works on it more time and she evaluate it a lot. 
 #NicoleVanDerHoeven
 
-tommorow to do (how ironic XD)
-# Notion-like content calendar in Obsidian // Obsidian Projects plugin
-https://www.youtube.com/watch?v=ny8lksaQ5A8
+#### [Notion-like content calendar in Obsidian // Obsidian Projects plugin](https://www.youtube.com/watch?v=ny8lksaQ5A8)
+Why change Fantasy Callendar and Kanban plugin for this Obsidian Project plugin.  A little complicated but is probably very useful when master it.
+
+tommorow 15.07.2023. start from 6:00 min
+#### [Why you NEED to learn Obsidian // EP1 Mastering Obsidian]()
+
+
+
