@@ -1,0 +1,3 @@
+- Join community
+- ChatGPT
+- Use youtube channels to get summary and add to chatGPT as a knowledge
