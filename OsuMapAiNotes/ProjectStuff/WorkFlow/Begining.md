@@ -1,36 +1,39 @@
-
-# 1. Density Concept
-
-#### 1. How to Calculate
-Density in this context refers to the number of objects per unit of time in a beatmap.
+# I. Density Concept
+### 1. How to Calculate Density
+Density, in this context, refers to the number of objects that appear in a beatmap per unit of time.
 ```equation
-∂ = (number of hit objects)/(song length)
+∂ = (number of hit objects) / (song length)
 ```
+To calculate the density in an `.osu` map file (refer to `#osuFileDocumentation`), identify the timestamps of the first and last hit objects, then subtract the time of the first hit object from that of the last hit object. This will give you the total duration of the map. With this information, you can then compute the density of hit objects over the song's length.
+### 2. Purpose of Density
+Density serves multiple purposes. First, it helps gauge the overall difficulty of a beatmap, though it might not always be the most precise metric. More importantly, density can distinguish between different map types such as #JumpyMap, #RegularMap, or #TappyMap. The distinction between these types is particularly interesting, as both #JumpyMap and #TappyMap can be difficult but differ significantly in density.
 
-To calculate the number of hit objects in a `.osu` map file (refer to #osuFileDocumentation), subtract the time of the first hit object from the time of the last hit object to determine the map's length. All of this information is available in the map file.
+The primary objective is to analyze how density varies across different map difficulties. This variation might resemble a Gaussian distribution. Using the difficulty level data provided in the `.osu` file (#mapDifficulty), we can group all files by difficulty and examine the density curve. If the curve is Gaussian-shaped, we would expect two tails and a center: the left tail corresponding to #JumpyMap, the center representing a well-balanced #RegularMap, and the right tail corresponding to #TappyMap.
 
-#### 2. Purpose of Density
-Density serves multiple purposes. Firstly, it helps determine the difficulty of a map, although it's not the most precise metric. More importantly, density can indicate whether a map is a #JumpyMap, #RegularMap, or #TappyMap. The distinction between the first and last types is particularly interesting because both can be challenging but differ significantly in density. The primary goal is to investigate how density varies across different map difficulties. This variation might resemble a Gaussian curve. The difficulty level of a map (#mapDifficulty) is provided in the `.osu` file. Therefore, the plan is to group all files by difficulty and analyze the density curve. If the curve resembles a Gaussian distribution, we would expect two tails and a center. The first tail corresponds to #JumpyMap, the center correlates with a well-balanced #RegularMap, and the far right tail corresponds to #TappyMap. I anticipate that the curve might be flatter for easier maps and taller for harder maps, but this hypothesis needs to be verified.
+___
+# II. Initial Steps for Density Evaluation
+## A. Collect Files
+Since all necessary information is available in `.osu` map files, the first step is to collect these files from various directories into a single folder. It is crucial that each file has a unique name, so renaming them sequentially (e.g., 1.txt, 2.txt, ..., 30000.txt) is advisable to avoid duplicates. These files are text-based, each around 100KB in size, so they don’t require much storage space. However, the entire collection of maps, including their corresponding songs, could total approximately 500GB. We need to create a Python script to automate the collection and renaming process.
+## B. Group Files by Difficulty
+Next, the collected files should be grouped by difficulty. First, refer to `#osuFileDocumentation` to understand the available difficulty levels. It’s preferable to use numerical values for grouping since the named difficulty levels created by map authors can be inconsistent and ambiguous.
+## C. Measure Density
+### 1. General info
+For each file, measure the density within its respective difficulty group. The script should store this density information in an array. After processing all files, analyse the distribution of densities to create a density profile for each difficulty level.
 
-# 2. What We Need First
+The first step is to separate the files based on the difficulty levels used in the game. In-game evaluation uses a star rating system, and the corresponding difficulties are represented in the following graphics:
 
-#### 1. Collect Files
-Since all the necessary information is available in the `.osu` map files, we should collect these files from various directories into one folder. It's essential that each file has a unique name, so renaming them sequentially (e.g., 1.txt, 2.txt, ..., 30000.txt) is advisable to avoid duplicates. These files are text files, each about 100KB in size, so they don't require much storage space. However, the entire collection of maps with songs may amount to around 500GB. We need to create a Python script to automate this process.
-#### 2. Group Files
-We should group the files by difficulty. First, we should consult the #osuFileDocumentation to understand the available difficulty levels. It's preferable to use numerical values for grouping since named difficulties by map creators can be inconsistent and sometimes confusing.
-#### 3. Measure Density
-Measure the density for each file within its respective difficulty group. The script should store this density information in an array, and after processing all files, we should analyse the distribution of densities. Each difficulty level should have its own density distribution. First step is to separate files by this difficulty in-game category. 
 ![[DifficultySpectrumOsu.png]]
-In-game evaluation is star base system and corresponding difficulties look like below graphic
 ![[DifficultyOsuStarEvaluation.png]]
-This separation is most important because we need to make model train in each ot these. And in each difficulty we also need to separate by jumpy, regular and tappy maps kind. 
 
+This categorisation is critical because the model needs to be trained separately for each difficulty group. Furthermore, within each difficulty level, maps should be further categorised into #JumpyMap, #RegularMap, and #TappyMap, based on their density values.
 
-# 3. Prepare Data
+---
+### 2. Copy and Organize Files
 
-#### 1. Copy Files
-We need to copy the `.mp3` and `.txt` files, ensuring they have the same name and are stored in a single directory with unique filenames. It might be wise to start with a smaller subset of files, as the process can be time-consuming. The OSU map collection contains a large number of `.osu` files, so we need to gather these files in one place first. Unique filenames are necessary, but the actual names are not crucial since all relevant information about difficulty and game mode is contained within the file content. We need a script to automate this process.
-###### Script for copy and rename
+We need to copy the `.mp3` and `.txt` files, ensuring they retain the same names and are stored in a single directory with unique filenames. It's advisable to start with a smaller subset of files initially, as the entire process can be time-consuming. The OSU map collection contains a vast number of `.osu` files, so it’s crucial to consolidate these files in one location before proceeding.
+
+Using unique filenames is necessary, but the actual names themselves are not important, as all relevant information regarding difficulty and game mode is contained within the file content. To simplify the organization and prevent name conflicts, we will create a Python script to automate the copying and renaming process.
+###### Script for Copying and Renaming Files
 ```Python
 import os
 import shutil
@@ -76,10 +79,19 @@ print(f"Copied and renamed {num_files_copied} files.")
 ```
 
 
-#### 2. Separate Files
-##### 1. Separate by mode
-There are several game modes (0 = osu!, 1 = osu!taiko, 2 = osu!catch, 3 = osu!mania) as outlined in the #osuFileDocumentation. We will focus only on Mode: Int = 0, which is osu!.
-###### Script for separate by mode
+### 3. Separate Files by Game Mode
+
+There are several game modes in the OSU game format, represented numerically as follows:
+
+- `0 = osu!`
+- `1 = osu!taiko`
+- `2 = osu!catch`
+- `3 = osu!mania`
+
+We will focus only on Mode `0`, which corresponds to osu!. Other game modes will be separated into their own directories for organizational purposes, as specified in the `#osuFileDocumentation`.
+
+###### Script for Separating Files by Mode
+The following script separates the files based on their respective modes and moves them into designated folders.
 ```Python
 import os
 import shutil
@@ -147,14 +159,16 @@ num_files_moved = move_files_based_on_mode(SOURCE_DIR)
 print(f"Tidied up {num_files_moved} files in total.")
 ```
 
-##### 2. Separate by difficulty
-###### Script for difficult tidy up
+### 4. Separate Files by Difficulty
+
+The following script categorizes the `.txt` files based on their difficulty level. The difficulty is determined using the `OverallDifficulty` attribute found within the file content.
+###### Script for Organizing Files by Difficulty
 ```Python
 import os
 import shutil
 import re
 
-# Constants for directories
+# Define constants for the source directory and destination directories for each difficulty level
 SOURCE_DIR = '/Users/grzegorzkulesza/Development/MyPractice/PythonScripts/Osu/osu'
 EASY_DIR = os.path.join(SOURCE_DIR, 'Easy')
 NORMAL_DIR = os.path.join(SOURCE_DIR, 'Normal')
@@ -169,6 +183,11 @@ for directory in [EASY_DIR, NORMAL_DIR, HARD_DIR, INSANE_DIR, EXPERT_DIR, EXPERT
         os.makedirs(directory)
 
 def move_files_based_on_difficulty(source_dir):
+    """
+    This function reads each .txt file in the source directory,
+    extracts its difficulty level, and moves it to the corresponding directory
+    based on the OverallDifficulty value.
+    """
     file_counter = 0
     difficulty_pattern = re.compile(r'OverallDifficulty:(\d+\.?\d*)')
 
@@ -177,7 +196,7 @@ def move_files_based_on_difficulty(source_dir):
         if filename.endswith('.txt'):
             file_path = os.path.join(source_dir, filename)
 
-            # Try reading the file to find the difficulty
+            # Attempt to read the file and extract its difficulty level
             try:
                 with open(file_path, 'r', encoding='utf-8') as file:
                     content = file.read()
@@ -189,12 +208,12 @@ def move_files_based_on_difficulty(source_dir):
                     print(f"Skipping file due to encoding issues: {filename}")
                     continue
 
-            # Find the OverallDifficulty value
+            # Extract the OverallDifficulty value from the file content
             match = difficulty_pattern.search(content)
             if match:
                 overall_difficulty = float(match.group(1))
-                
-                # Determine the target directory based on difficulty
+
+                # Determine the target directory based on the difficulty value
                 if 0.0 <= overall_difficulty <= 1.99:
                     dest_dir = EASY_DIR
                 elif 2.0 <= overall_difficulty <= 2.69:
@@ -215,26 +234,24 @@ def move_files_based_on_difficulty(source_dir):
                 shutil.move(file_path, os.path.join(dest_dir, filename))
                 file_counter += 1
 
-                # Print progress every 500 files
+                # Print progress every 500 files moved
                 if file_counter % 500 == 0:
                     print(f"Sorted {file_counter} files based on difficulty.")
 
     return file_counter
 
-# Execute the function
+# Execute the function and display the result
 num_files_sorted = move_files_based_on_difficulty(SOURCE_DIR)
-print(f"Sorted {num_files_sorted} files into difficulty folders.")
+print(f"Successfully sorted {num_files_sorted} files into their respective difficulty folders.")
+
 ```
 
-#### 3. Calculate density
 
-##### 1. Distribution
-This step is probably important in the first time to investigate how to create range of #RegularMap , #JumpyMap and #TappyMap 
+### 5. Calculated Density Values for Each Difficulty Level
+The first step in determining the boundaries for different map types is to generate distribution graphs. These graphs help visualize the density values across various difficulties and identify the thresholds for each category.
 
-![[AllDensityDistribution.png]]
-##### 2. Calculated values of densities for every difficult mode
-First wy have distribution graphs to determine borders.
-###### Script for create pdf with distributions for every difficulty
+The script below creates a PDF file with histograms for density distributions across different difficulty levels. This helps in visualizing how densities are spread for each difficulty group and setting thresholds.
+###### Script for Creating Density Distribution PDFs
 ```Python
 import os
 import re
@@ -424,10 +441,22 @@ else:
 plot_density_distributions(density_data)
 ```
 
-Heres how look output for this analyse:
+###### Output Graphs
+
+Combined densities for all difficulties:
+![[AllDensityDistribution.png]]
+
+---
+
+Here is how the output of this analysis looks:
 ![[density_distributions left-right.pdf]]
 
-To calculate borders of jumpy and tappy maps we use 1/e Thresholds for each difficulty level (taken from PDF). Exception are easy mode both borders and hard upper border (explained in next paragraph).  These values are: 
+---
+
+### 6.  Establish Density Thresholds
+After generating the PDF with density distribution plots, we use these graphs to determine the boundaries for different map types based on 1/e threshold values.
+
+To define the thresholds for jumpy and tappy maps, we set the boundaries based on 1/e values for each difficulty level (derived from the PDF). Exceptions apply to the `Easy` mode and the upper border for `Hard` mode, which are explained in the subsequent paragraphs. The threshold values are as follows:
 
 ```Python
 THRESHOLDS = {
@@ -440,7 +469,62 @@ THRESHOLDS = {
 }
 ```
 
-Next step is to check how many maps we have in this range. This is especially important because we need enough data for trening for the model. 
+---
+##### Manual Adjustments for Easy and Hard Distributions
+
+For the `Easy` and `Hard` difficulty levels, we needed to manually adjust the distribution boundaries:
+
+- **Easy Mode**: Due to the limited number of maps in this difficulty, it’s challenging to establish clear borders for jumpy and tappy maps. Therefore, it might be better to include all maps in this mode for training to obtain more accurate results.
+    
+- **Hard Mode**: The upper limit for the `Hard` difficulty was manually adjusted due to the irregular distribution. An approximate line showing how the distribution might look as a continuous function was drawn manually.
+
+![[DensityEasyDistributionFixed.png]]
+
+For the `Hard` mode, the manual integration resulted in a more balanced distribution:
+
+![[DensityHardDistributionFixed.png]]
+
+###### Comparison Before and After Manual Correction
+
+The table below compares the number of maps classified before and after the manual corrections:
+
+**Before Correction**
+```Before
+Easy Density Classification:
+  Low: 732 occurrences
+  Medium: 152 occurrences
+  High: 456 occurrences
+
+Hard Density Classification:
+  Low: 768 occurrences
+  Medium: 4505 occurrences
+  High: 2161 occurrences
+```
+
+**After Correction**
+```After
+Easy Density Classification:
+  Low: 113 occurrences
+  Medium: 771 occurrences
+  High: 456 occurrences
+
+Hard Density Classification:
+  Low: 768 occurrences
+  Medium: 5713 occurrences
+  High: 953 occurrences
+```
+
+After correction, the number of occurrences in the `Medium` category increased, providing a more balanced and representative distribution. This adjustment helps ensure that the model is trained with a diverse set of data points, improving its overall performance.
+
+
+
+
+### 7. Analyzing Density Categories
+
+The next step is to determine how many maps fall within each density range for every difficulty level. This step is crucial, as we need to ensure there is sufficient data in each category for effective model training.
+###### Script for Counting Maps in Each Category
+
+The following script categorizes the maps into `Low`, `Medium`, and `High` density categories based on predefined 1/e threshold values for each difficulty level.
 
 ```Python
 import os
@@ -493,7 +577,9 @@ else:
     print(f"Densities file not found: {DENSITY_FILE}")
 ```
 
-The result of the amount of data (ranking maps collected from packs up to end o 2023 year.)
+##### Density Classification Results
+
+The table below shows the distribution of maps across `Low`, `Medium`, and `High` density categories for each difficulty level (based on map collections up to the end of 2023).
 
 ```Therminal
 Easy Density Classification:
@@ -526,54 +612,36 @@ Expert+ Density Classification:
   Medium: 44954 occurrences
   High: 7874 occurrences
 ```
-Low value show how many jumpy maps are after 1/e thresholds for each difficulty level separation. Medium are regular maps and High is tappy maps. 
 
-###### easy and hard distribution manual integration explanation
-Because lack of #easy maps make hard to examine distribution for jumpy and tapping maps. Probably in this project is better use all maps for easy mode if better results should be obtain. 
-![[DensityEasyDistributionFixed.png]]
-
-For hard maps upper limit that designate begining of tappy maps is corrected manualy because of ragged distribution graph. Aproximate line showing how this distribution as a continious function may looks like also was drown manually. 
-![[DensityHardDistributionFixed.png]]
-
-###### Number of maps before and after manual correction. 
-After correction number of occurrences of left and side is more balanced. I don't know is this should be a determinant but distribution, especially for hard maps looks quite normal or even right sided log normal. This is also occurred in other difficulties, and what is quite common that the most maps are regular so this amount is higher. 
-```Before
-Easy Density Classification:
-  Low: 732 occurrences
-  Medium: 152 occurrences
-  High: 456 occurrences
-
-Hard Density Classification:
-  Low: 768 occurrences
-  Medium: 4505 occurrences
-  High: 2161 occurrences
-```
-
-```After
-Easy Density Classification:
-  Low: 113 occurrences
-  Medium: 771 occurrences
-  High: 456 occurrences
-
-Hard Density Classification:
-  Low: 768 occurrences
-  Medium: 5713 occurrences
-  High: 953 occurrences
-```
+- **Low**: Maps identified as "jumpy" based on their density values falling below the lower threshold for each difficulty level.
+- **Medium**: Maps considered "regular" whose density values fall within the defined thresholds.
+- **High**: Maps classified as "tappy," which exceed the upper threshold for their respective difficulty level.
 
 
+# III. Updating `.osu` Files
 
+For training purposes, each file should only contain information about its difficulty and balance factor. After calculating the density, we can categorize it into three ranges:
 
-#### 4. Update .osu Files
-For training data, we need each file to contain only the difficulty and balance factor. Once we have the density, we can categorize it into ranges: the first range represents #JumpyMap, the second range is #RegularMap, and the third is #TappyMap. Understanding the distribution of these ranges is crucial to determine how many maps fall into each category and to adjust the range widths accordingly. This is important because our AI model needs sufficient data for effective learning. I believe three categories should suffice, though the variation will be significant due to differences in difficulty.
-###### Each file should ultimately contain:
- 1. Information on difficulty and type, for example, J1 for a #JumpyMap with difficulty 1, R9 for a #RegularMap with difficulty 9, and T3 for a #TappyMap with difficulty 3.
- 2. The timing and position of hit objects—identical to the original `.osu` file.
+1. **#JumpyMap** – Represents the lowest density range.
+2. **#RegularMap** – Represents the middle density range.
+3. **#TappyMap** – Represents the highest density range.
 
+Understanding the distribution of these categories is crucial to determine how many maps fall into each group and adjust the range widths if necessary. This is essential because our AI model requires sufficient data in each category for effective learning.
 
+While three categories should suffice, it’s important to note that variations within these categories will be significant due to differences in difficulty levels.
 
-# 5. Helpfull link list
+#### Each `.osu` file should ultimately contain:
 
+1. **Difficulty and Type Information**: For example:
+    
+    - `J1` for a #JumpyMap with difficulty 1
+    - `R9` for a #RegularMap with difficulty 9
+    - `T3` for a #TappyMap with difficulty 3
+2. **Timing and Position of Hit Objects**: These should remain identical to the original `.osu` file to preserve the map's structure.
+    
+---
+
+# IV. Helpfull link list
 1. [.osu file format](https://osu.ppy.sh/wiki/en/Client/File_formats/osu_%28file_format%29#difficulty)
 2. [Song setup window](https://osu.ppy.sh/wiki/en/Client/Beatmap_editor/Song_setup#difficulty)
 3. [Difficulty](https://osu.ppy.sh/wiki/en/Beatmap/Difficulty)
