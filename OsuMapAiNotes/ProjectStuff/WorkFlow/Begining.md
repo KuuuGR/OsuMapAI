@@ -12,12 +12,12 @@ The primary objective is to analyze how density varies across different map diff
 
 ___
 # II. Initial Steps for Density Evaluation
-## A. Collect Files
+## 1. Collect Files
 Since all necessary information is available in `.osu` map files, the first step is to collect these files from various directories into a single folder. It is crucial that each file has a unique name, so renaming them sequentially (e.g., 1.txt, 2.txt, ..., 30000.txt) is advisable to avoid duplicates. These files are text-based, each around 100KB in size, so they don’t require much storage space. However, the entire collection of maps, including their corresponding songs, could total approximately 500GB. We need to create a Python script to automate the collection and renaming process.
-## B. Group Files by Difficulty
+## 2. Group Files by Difficulty
 Next, the collected files should be grouped by difficulty. First, refer to `#osuFileDocumentation` to understand the available difficulty levels. It’s preferable to use numerical values for grouping since the named difficulty levels created by map authors can be inconsistent and ambiguous.
-## C. Measure Density
-### 1. General info
+## 3. Measure Density
+### a. General info
 For each file, measure the density within its respective difficulty group. The script should store this density information in an array. After processing all files, analyse the distribution of densities to create a density profile for each difficulty level.
 
 The first step is to separate the files based on the difficulty levels used in the game. In-game evaluation uses a star rating system, and the corresponding difficulties are represented in the following graphics:
@@ -28,8 +28,7 @@ The first step is to separate the files based on the difficulty levels used in t
 This categorisation is critical because the model needs to be trained separately for each difficulty group. Furthermore, within each difficulty level, maps should be further categorised into #JumpyMap, #RegularMap, and #TappyMap, based on their density values.
 
 ---
-### 2. Copy and Organize Files
-
+### b Copy and Organize Files
 We need to copy the `.mp3` and `.txt` files, ensuring they retain the same names and are stored in a single directory with unique filenames. It's advisable to start with a smaller subset of files initially, as the entire process can be time-consuming. The OSU map collection contains a vast number of `.osu` files, so it’s crucial to consolidate these files in one location before proceeding.
 
 Using unique filenames is necessary, but the actual names themselves are not important, as all relevant information regarding difficulty and game mode is contained within the file content. To simplify the organization and prevent name conflicts, we will create a Python script to automate the copying and renaming process.
@@ -78,9 +77,7 @@ num_files_copied = copy_and_rename_osu_files(SOURCE_DIR, DEST_DIR)
 print(f"Copied and renamed {num_files_copied} files.")
 ```
 
-
-### 3. Separate Files by Game Mode
-
+### c. Separate Files by Game Mode
 There are several game modes in the OSU game format, represented numerically as follows:
 
 - `0 = osu!`
@@ -159,8 +156,7 @@ num_files_moved = move_files_based_on_mode(SOURCE_DIR)
 print(f"Tidied up {num_files_moved} files in total.")
 ```
 
-### 4. Separate Files by Difficulty
-
+### d. Separate Files by Difficulty
 The following script categorizes the `.txt` files based on their difficulty level. The difficulty is determined using the `OverallDifficulty` attribute found within the file content.
 ###### Script for Organizing Files by Difficulty
 ```Python
@@ -247,7 +243,7 @@ print(f"Successfully sorted {num_files_sorted} files into their respective diffi
 ```
 
 
-### 5. Calculated Density Values for Each Difficulty Level
+### e. Calculated Density Values for Each Difficulty Level
 The first step in determining the boundaries for different map types is to generate distribution graphs. These graphs help visualize the density values across various difficulties and identify the thresholds for each category.
 
 The script below creates a PDF file with histograms for density distributions across different difficulty levels. This helps in visualizing how densities are spread for each difficulty group and setting thresholds.
@@ -440,9 +436,7 @@ else:
 
 plot_density_distributions(density_data)
 ```
-
-###### Output Graphs
-
+##### Output Graphs
 Combined densities for all difficulties:
 ![[AllDensityDistribution.png]]
 
@@ -452,8 +446,7 @@ Here is how the output of this analysis looks:
 ![[density_distributions left-right.pdf]]
 
 ---
-
-### 6.  Establish Density Thresholds
+### f.  Establish Density Thresholds
 After generating the PDF with density distribution plots, we use these graphs to determine the boundaries for different map types based on 1/e threshold values.
 
 To define the thresholds for jumpy and tappy maps, we set the boundaries based on 1/e values for each difficulty level (derived from the PDF). Exceptions apply to the `Easy` mode and the upper border for `Hard` mode, which are explained in the subsequent paragraphs. The threshold values are as follows:
@@ -519,8 +512,7 @@ After correction, the number of occurrences in the `Medium` category increased, 
 
 
 
-### 7. Analyzing Density Categories
-
+### g. Analyzing Density Categories
 The next step is to determine how many maps fall within each density range for every difficulty level. This step is crucial, as we need to ensure there is sufficient data in each category for effective model training.
 ###### Script for Counting Maps in Each Category
 
@@ -616,7 +608,6 @@ Expert+ Density Classification:
 - **Low**: Maps identified as "jumpy" based on their density values falling below the lower threshold for each difficulty level.
 - **Medium**: Maps considered "regular" whose density values fall within the defined thresholds.
 - **High**: Maps classified as "tappy," which exceed the upper threshold for their respective difficulty level.
-
 
 # III. Updating `.osu` Files
 
